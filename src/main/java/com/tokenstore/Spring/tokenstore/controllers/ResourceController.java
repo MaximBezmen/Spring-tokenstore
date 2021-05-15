@@ -3,6 +3,7 @@ package com.tokenstore.Spring.tokenstore.controllers;
 import com.tokenstore.Spring.tokenstore.entites.RandomCity;
 import com.tokenstore.Spring.tokenstore.entites.User;
 import com.tokenstore.Spring.tokenstore.service.GenericService;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,8 @@ public class ResourceController {
     }
 
     @GetMapping(value ="/users")
-    @PreAuthorize("hasAuthority('ADMIN_USER')")
+    //@PreAuthorize("hasAuthority('ADMIN_USER')")
+    @Secured("ADMIN_USER")
     public List<User> getUsers(){
         return userService.findAllUsers();
     }
